@@ -4,8 +4,8 @@ from Edge import Edge
 
 v = Vertex('v')
 w = Vertex('w')
-e = Edge(v, w)
+#e = Edge(v, w)
 
-g = Graph([v, w], [e])
-print(g.get_edge(v, Vertex('h')))
-print(g.remove_edge(e))
+g = Graph([v, w])
+
+
