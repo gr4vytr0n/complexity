@@ -50,3 +50,6 @@ class Graph(dict):
       for v2 in self:
         if v1 != v2:
           self.add_edge(Edge(v1, v2))
+
+  def add_regular_edges(self, degree):
+    pass
