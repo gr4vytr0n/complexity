@@ -110,6 +110,3 @@ class Graph(dict):
         # distances are first numberOfOdds out of possibles
         distances = possibles[:numberOfOdds]
         add_edges(vList, distances)
-    
-    
-    
