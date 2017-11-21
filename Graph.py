@@ -39,6 +39,10 @@ class Graph(dict):
   def edges(self):
     return list(set(self[v][es] for v in self for es in self[v]))
 
+  def neighbors(self, vertex):
+    # return list of neigboring vertices
+    return [i for i in self[vertex]]
+
   def out_vertices(self, vertex):
     return [ov for ov in self[vertex]]
 
@@ -114,40 +118,37 @@ class Graph(dict):
   # Determine if a graph is a `connected graph`
   # Using breadth-first search
   def is_connected(self):
+    vertices = self.vertices()
+    searched = []
+    queue = []
 
-    # code from wikipedia to be adapted for use here
-    def bfs(problem):
-      # FIFO set
-      open_set = Queue()
-      # set of empty nodes
-      closed_set = set()
-      # meta info. (used for path formation)
-      meta = dict() # key -> (parent state, action to reach child)
-      # initialize
-      start = problem.get_start_state()
-      meta[start] = (None, None)
-      open_set.enqueue(start)
+    # start at a vertex
+    start = vertices[0]
+    queue.append(start)
 
-      while not open_set.is_empty():
-        parent_state = open_set.dequeue()
-        if problem.is_goal(parent_state)
-          return construct_path(parent_state, meta)
-        for (child_state, action) in problem.get_successors(parent_state):
-          if child_state in closed_set:
-            continue
-          if child_state not in open_set:
-            meta[child_state] = (parent_state, action)
-            open_set.enqueue(child_state)
+    # end when all vertices have been visited
+    # search add visited vertices to searched list if not already present
+    # searched list will be same size as the length of vertices list
+    end = len(vertices)
+    
+    while len(queue) > 0:
+      # remove current vertex being searched
+      current = queue.pop(0)
 
-        closed_set.add(parent_state)
-    def construct_path(state, meta):
-      action_list = list()
-      while True:
-        row = meta[state]
-        if len(row) == 2:
-          state = row[0]
-          action = row[1]
-          action_list.append(action)
-        else:
-          break
-      return action_list.reverse()
+      # if search has not been already performed
+      if current not in searched:
+        # visit all neighbors of current vertex and continue searching
+        next = self.neighbors(current)
+        for i in range(len(next)):
+          # place neighbors in queue and update parent
+          neighbor = next[i]
+          queue.append(next[i])
+        
+        # mark vertex as searched
+        searched.append(current)
+
+    # if all vertices have been visited, the graph is a `connected graph`
+    if end == len(searched):
+      return True
+    else:
+      return False
