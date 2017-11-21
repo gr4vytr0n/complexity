@@ -32,12 +32,14 @@ def generate_graphs(num_graphs, n):
 if __name__ == '__main__':
   import matplotlib.pyplot as plt
 
-  x = 10000
+  iters = 10000
+  div = iters
+  n = 10
   p = random.uniform(0, 1)
   connectedCount = 0
-  while x > 0:
+  while iters > 0:
     master = {}
-    g = generate_graphs(1, 10) 
+    g = generate_graphs(1, n) 
     for i in range(len(g)):
       g[i].add_random_edges(p)
       master[i] = {}
@@ -47,6 +49,6 @@ if __name__ == '__main__':
       master[i]['p'] = p
       for j in g[i]:
         g[i][j].clear()
-      x -= 1
+      iters -= 1
 
-  print('probability of being connected: %f, for n: %d and p: %f' % (((connectedCount/10000)*100), 10, p))
+  print('probability of being connected: {}%, for n: {} and p: {}'.format(((connectedCount/div)*100), 10, p))
