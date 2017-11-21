@@ -10,19 +10,19 @@ from RandomGraph import RandomGraph
 def generate_graphs(num_graphs, n):
   graphs = []
 
-  # generate 10 lists of randomly sized list of unique letters for vertices
+  # generate n number of lists of random list of unique letters for vertices
   alpha = list(string.ascii_lowercase[::1])
   vLists = []
   i = num_graphs
   while i > 0:
-    # random sized list of random alphabetic characters -- vertex labels
-    # lists will have from 2 to 26 (inclusive) vertices
+    # variable sized list of random alphabetic characters -- vertex labels
+    # lists can have from up to 26 (inclusive) vertices
     sample = random.sample(alpha, n)
     # append to vList if a similar list is not already existing
     if sample in vLists:
       break
     else:
-      vLists.append(sample)
+      vLists.append(sorted(sample))
       i -= 1
 
   for v in vLists:
