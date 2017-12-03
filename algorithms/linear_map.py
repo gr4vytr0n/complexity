@@ -10,8 +10,9 @@ class LinearMap(object):
             if key == k:
                 return val
         raise KeyError
-
-if __name__ == '__main__':
-    lm = LinearMap()
-    lm.add('cat', 'meow')
-    print(lm.get('cat'))
+    
+    def __str__(self):
+        res = ''
+        for k, v in self.items:
+            print('hello')
+        return res

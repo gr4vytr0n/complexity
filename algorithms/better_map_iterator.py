@@ -20,3 +20,8 @@ class BetterMap(object):
 
     def __len__(self):
         return len(self.maps)
+
+    def iteritems(self):
+        for i in self.maps:
+            for j in i.items:
+                yield j
