@@ -1,5 +1,6 @@
 from linear_map import LinearMap
 
+
 class BetterMap(object):
     def __init__(self, n=100):
         self.maps = []
